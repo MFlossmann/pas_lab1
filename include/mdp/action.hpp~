@@ -1,0 +1,54 @@
+#ifndef mdp_state_hpp_
+#define mdp_state_hpp_
+
+#include <string>
+#include <iostream>
+#include <vector>
+
+using std::cout;
+using std::endl;
+//using std::string;
+
+namespace mdp 
+{
+  class State;
+
+  class Action{
+  private:
+	std::vector<State*> target_;
+	std::vector<double> probability_;
+	std::vector<int> reward_;
+
+	double probabilitySum_;
+	
+  public:
+	Action(const std::string name);
+	
+	~Action();
+
+	void addTarget(State* target,
+			  double probability,
+			  int reward);
+  };
+
+
+  class State
+  {
+  private:
+	std::string name_;
+	std::vector<Action> actions_;
+
+	double totalReward_;
+	
+  public:
+    State(const std::string& name);
+	~State();
+
+	void addAction(const std::string name,
+				   double probability,
+				   int reward);
+};
+	
+}
+
+#endif

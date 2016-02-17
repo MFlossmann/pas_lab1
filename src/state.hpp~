@@ -1,0 +1,13 @@
+#include "mdp/state.hpp"
+
+namespace mdp {
+  
+  State::State(){
+
+  }
+  
+  State::~State(){
+  
+  }
+  
+}

@@ -1,0 +1,25 @@
+#ifndef mdp_h___
+#define mdp_h___
+
+#include <stdio>
+
+using std::cout;
+using std::endl;
+using std::string;
+
+class MDPState
+{
+private:
+string name_;
+
+public:
+  MDPState(const string& name);
+  ~MDPState();
+}
+
+class MDPAction
+{
+
+}
+
+#endif

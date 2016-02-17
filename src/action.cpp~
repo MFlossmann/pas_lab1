@@ -1,0 +1,14 @@
+#include "mdp/state.hpp"
+
+namespace mdp {
+  State::State(const std::string& name){
+	name_ = name;
+
+	cout << "Created a new state with name " << name_ << "." << endl;
+  }
+  
+  State::~State(){
+  
+  }
+  
+}
