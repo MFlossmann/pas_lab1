@@ -36,6 +36,8 @@ namespace mdp
 
 	Action(const std::string name,
 		   double reward);
+
+	Action(const Action& action);
 	
 	~Action();
 
@@ -43,11 +45,11 @@ namespace mdp
 				 State& target,
 				 double probability);
 
-	std::string getName();
-
 	std::vector<Edge>& getEdges();
 
-	double getReward();
+	std::string getName() const;
+
+	double getReward() const;
   };	
 }
 

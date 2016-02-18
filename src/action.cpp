@@ -29,6 +29,11 @@ namespace mdp {
 		 << ", reward:\t" << reward_ << endl;
 #endif
   }
+
+  Action::Action(const Action& action){
+	name_ = action.getName();
+	reward_ = action.getReward();
+  }
   
   Action::~Action(){
 	
@@ -48,15 +53,15 @@ namespace mdp {
 		 << "\tto action " << this->getName() << "." << endl;
   }
 
-  std::string Action::getName(){
-	return name_;
-  }
-
-  std::vector<Edge>& Action::getEdges(){
+  std::vector<Edge>& Action::getEdges() {
 	return edges_;
   }
 
-  double Action::getReward(){
+  std::string Action::getName() const{
+	return name_;
+  }
+
+  double Action::getReward() const{
 	return reward_;
   }
 

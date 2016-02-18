@@ -13,6 +13,7 @@ include_directories("${PROJECT_BINARY_DIR}/include")
 add_library(mdp src/mdp.cpp)
 add_library(mdp_action src/action.cpp)
 add_library(mdp_state src/state.cpp)
+add_library(mdp_policy src/policy.cpp)
 
 add_executable(pas_lab1 src/main.cpp)
-target_link_libraries(pas_lab1 mdp mdp_state mdp_action)
+target_link_libraries(pas_lab1 mdp mdp_state mdp_action mdp_policy)

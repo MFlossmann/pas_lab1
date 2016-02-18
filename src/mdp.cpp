@@ -17,26 +17,29 @@ namespace mdp{
 	  std::vector<State> tempList = stateList; // temporary list
 	  cout << "Iteration " << iterator << ":" << endl;
 	  for (int i=0; i<stateList.size(); i++){
-		std::vector<Action> actions =  stateList[i].getActions(); // Get the reference to the actions of the current state
-
 		cout << "\tState: " << stateList[i].getName()			\
 			 << "\tutility: " << stateList[i].utility << endl;
 
-		double max_utility = 0;                            // initialize for finding the maximum
-		for (int a=0; a<actions.size();a++){               // sum through utilities of actions
-		  std::vector<Edge> edges = actions[a].getEdges(); // get the reference to the edges of the current Action
+		std::vector<Action> actions =  stateList[i].getActions(); // Get the reference to the actions of the current state
+		double max_utility = 0;                                   // initialize for finding the maximum
+		Action bestAction(actions.front());                       // initialize the first action
+
+		for (int a=0; a<actions.size();a++){                      // sum through all actions
+		  std::vector<Edge> edges = actions[a].getEdges();        // get the reference to the edges of the current Action
 		  double utility = actions[a].getReward() + stateList[i].getReward();
 
 		  // sum through all the edges
 		  for (int j=0; j<edges.size(); j++){
-			utility += pow(lambda,(double)iterator) *      // recession factor for infinite horizon
+			utility += pow(lambda,(double)iterator) *             // recession factor for infinite horizon
 			           edges[j].target_->utility * edges[j].probability_; // sum(p*U(target))
 		  } // end edge iteration
 
 		  //cout << "\t\tAction: " << actions[a].getName()	\
 		  //	   << "\tutility: " << utility << endl;
-		  if (utility > max_utility)
+		  if (utility > max_utility){                             // save the current action and utility value
 			max_utility = utility;
+			bestAction = mdp::Action(actions[a]);
+		  }
 		} // end action iteration
 		tempList[i].utility = max_utility; // assign the new utility value to the stateList
 	  } // end state iteration
