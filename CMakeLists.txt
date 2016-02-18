@@ -10,8 +10,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 include_directories("${PROJECT_BINARY_DIR}/include")
 
 #Make a library from the classes
+add_library(mdp src/mdp.cpp)
 add_library(mdp_action src/action.cpp)
 add_library(mdp_state src/state.cpp)
 
 add_executable(pas_lab1 src/main.cpp)
-target_link_libraries(pas_lab1 mdp_state mdp_action)
+target_link_libraries(pas_lab1 mdp mdp_state mdp_action)

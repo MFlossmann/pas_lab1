@@ -5,6 +5,7 @@ namespace mdp {
 			   double reward){
 	name_ = name;
 	reward_ = reward;
+	utility = 0;
 
 #ifdef _VERBOSE_MODE_
 	cout << "Created a new state with name " << name_ << "." << endl;
@@ -19,8 +20,20 @@ namespace mdp {
 	actions_.push_back(action);
 	cout << "Added action " << action.getName() << " to state " << name_ << endl;
   }
+
+  void State::setReward(double reward){
+	reward_ = reward;
+  }
   
   std::string State::getName(){
 	return name_;
+  }
+
+  double State::getReward(){
+	return reward_;
+  }
+  
+  std::vector<Action>& State::getActions(){
+	return actions_;
   }
 }

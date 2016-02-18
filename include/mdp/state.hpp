@@ -18,16 +18,24 @@ namespace mdp
   private:
 	std::string name_;
 	std::vector<Action> actions_;
-	std::double reward_;
+	double reward_;
 	
   public:
+	double utility;
+	
     State(const std::string& name,
-		  double reward);
+		  double reward = 0.0);
 	~State();
 
 	void addAction(Action action);
 
+	void setReward(double reward);
+	
 	std::string getName();
+
+	double getReward();
+
+	std::vector<Action>& getActions();
 };
 	
 }
