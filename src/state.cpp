@@ -21,6 +21,18 @@ namespace mdp {
 	cout << "Added action " << action.getName() << " to state " << name_ << endl;
   }
 
+  void State::updateUtility(std::vector<State>& old,
+							std::vector<State> update)
+  {
+	if (old.size() != update.size()){
+	  cout << "Fatal error in updateUtility: old and update vector aren't the same length!";
+	  return;
+	}
+	for (int i=0;i<old.size();i++){
+	  old[i].utility = update[i].utility;
+	}
+  }
+
   void State::setReward(double reward){
 	reward_ = reward;
   }

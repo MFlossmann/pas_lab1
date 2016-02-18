@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <stdlib.h>
 #include "mdp/mdp.hpp"
 #include "mdp/state.hpp"
 #include "mdp/action.hpp"
@@ -11,7 +12,7 @@ int main(int argc, char* argv[])
 {
   std::vector<mdp::State> stateList;
   stateList.push_back(mdp::State("born",0.0));
-  stateList.push_back(mdp::State("init",0.0));
+  stateList.push_back(mdp::State("init",-1.0));
   stateList.push_back(mdp::State("Level 1",0.0));
   stateList.push_back(mdp::State("Level 2",0.0));
   mdp::Action growUp("grow up",0.0);
@@ -49,7 +50,10 @@ int main(int argc, char* argv[])
   slackOff.addEdge("...zzz...",stateList[3],.8);
   slackOff.addEdge("overslept",stateList[2],.2);
   stateList[3].addAction(slackOff);
-  
-  mdp::utilityIteration(stateList);
+
+  int horizon = 20;
+  if (argc >=2)
+	horizon = atoi(argv[1]);
+  mdp::utilityIteration(stateList, horizon);
   return 0;
 }

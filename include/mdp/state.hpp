@@ -28,6 +28,9 @@ namespace mdp
 	~State();
 
 	void addAction(Action action);
+	
+	static void updateUtility(std::vector<State>& old,
+							  std::vector<State> update);
 
 	void setReward(double reward);
 	
