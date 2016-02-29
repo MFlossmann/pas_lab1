@@ -31,8 +31,14 @@ namespace mdp {
   }
 
   Action::Action(const Action& action){
-	name_ = action.getName();
-	reward_ = action.getReward();
+	name_ = action.name_;
+	reward_ = action.reward_;
+	edges_ = action.edges_;
+  }
+
+  Action::Action(){
+	name_ = "Empty Action!";
+	reward_ = 0.0;
   }
   
   Action::~Action(){

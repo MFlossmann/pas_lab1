@@ -10,13 +10,13 @@
 #define EPSILON 1e-4
 #define LAMBDA 0.8
 
-#ifndef INFINITY
-#define INFINITY -1
-#endif
+//#ifndef INFINITE_HORIZON
+#define INFINITE_HORIZON -1
+//#endif
 
 namespace mdp{
   
-  void utilityIteration(std::vector<State>& state,
+  Policy utilityIteration(std::vector<State>& state,
 						int horizon);
 
   double rootMeanSquareError(std::vector<State> stateList,

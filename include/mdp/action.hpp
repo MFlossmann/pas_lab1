@@ -38,6 +38,8 @@ namespace mdp
 		   double reward);
 
 	Action(const Action& action);
+
+	Action();
 	
 	~Action();
 

@@ -28,6 +28,8 @@ namespace mdp
 	~State();
 
 	void addAction(Action action);
+
+	static bool compare(State state1, State state2);
 	
 	static void updateUtility(std::vector<State>& old,
 							  std::vector<State> update);

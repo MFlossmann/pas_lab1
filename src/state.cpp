@@ -5,7 +5,7 @@ namespace mdp {
 			   double reward){
 	name_ = name;
 	reward_ = reward;
-	utility = 0;
+	utility = reward;
 
 #ifdef _VERBOSE_MODE_
 	cout << "Created a new state with name " << name_ << "." << endl;
@@ -20,6 +20,11 @@ namespace mdp {
 	actions_.push_back(action);
 	cout << "Added action " << action.getName() << " to state " << name_ << endl;
   }
+
+  bool State::compare(State state1, State state2){
+	return (state1.name_.compare(state2.name_) == 0);
+  }
+
 
   void State::updateUtility(std::vector<State>& old,
 							std::vector<State> update)
@@ -44,7 +49,7 @@ namespace mdp {
   double State::getReward(){
 	return reward_;
   }
-  
+
   std::vector<Action>& State::getActions(){
 	return actions_;
   }

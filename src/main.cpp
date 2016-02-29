@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 {
   std::vector<mdp::State> stateList;
   stateList.push_back(mdp::State("born",0.0));
-  stateList.push_back(mdp::State("init",-1.0));
+  stateList.push_back(mdp::State("init",0.0));
   stateList.push_back(mdp::State("Level 1",0.0));
   stateList.push_back(mdp::State("Level 2",0.0));
   mdp::Action growUp("grow up",0.0);
@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
   stateList[0].addAction(growUp);
   
   // from init human
-  mdp::Action workHard("work hard",-20.0);
+  mdp::Action workHard("work hard",-2000.0);
   workHard.addEdge("success",stateList[3],0.7);
   workHard.addEdge("neutral",stateList[2],0.2);
   workHard.addEdge("failed", stateList[1],0.1);
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
   stateList[1].addAction(slackOff);
 
   // from Level 1 human
-  workHard = mdp::Action("work hard", -10);
+  workHard = mdp::Action("work hard", -2000.0);
   workHard.addEdge("success",stateList[3],0.7);
   workHard.addEdge("failed",stateList[2],0.3);
   stateList[2].addAction(workHard);
@@ -47,13 +47,16 @@ int main(int argc, char* argv[])
 
   // from Level 2 human
   slackOff = mdp::Action("slack off", 4.);
-  slackOff.addEdge("...zzz...",stateList[3],.8);
-  slackOff.addEdge("overslept",stateList[2],.2);
+  slackOff.addEdge("...zzz...",stateList[3],.2);
+  slackOff.addEdge("overslept",stateList[2],.8);
   stateList[3].addAction(slackOff);
 
   int horizon = 20;
   if (argc >=2)
 	horizon = atoi(argv[1]);
-  mdp::utilityIteration(stateList, horizon);
+  mdp::Policy policy = mdp::utilityIteration(stateList, horizon);
+
+  policy.print();
+
   return 0;
 }
